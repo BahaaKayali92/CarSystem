@@ -9,6 +9,7 @@ import com.udacity.vehicles.service.CarService;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import javax.validation.Valid;
 
@@ -100,7 +101,13 @@ class CarController {
          * TODO: Use the `assembler` on that updated car and return as part of the response.
          *   Update the first line as part of the above implementing.
          */
-        Resource<Car> resource = assembler.toResource(new Car());
+        Car existCar = this.carService.findById(id);
+        existCar.setDetails(car.getDetails());
+        existCar.setLocation(car.getLocation());
+        existCar.setPrice(car.getPrice());
+        existCar.setCondition(car.getCondition());
+        this.carService.save(existCar);
+        Resource<Car> resource = assembler.toResource(existCar);
         return ResponseEntity.ok(resource);
     }
 
