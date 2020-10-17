@@ -114,11 +114,12 @@ public class CarService {
          *   If it does not exist, throw a CarNotFoundException
          */
 
+        Car car = this.findById(id);
 
         /**
          * TODO: Delete the car from the repository.
          */
 
-
+        this.repository.delete(car);
     }
 }
