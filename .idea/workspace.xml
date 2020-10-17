@@ -23,9 +23,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1f07054c-5ad0-4c6d-a9ae-a1d567f01f39" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_code_gson_gson_2_8_5.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vehicles-api/src/main/java/com/udacity/vehicles/api/CarController.java" beforeDir="false" afterPath="$PROJECT_DIR$/vehicles-api/src/main/java/com/udacity/vehicles/api/CarController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vehicles-api/src/main/java/com/udacity/vehicles/service/CarService.java" beforeDir="false" afterPath="$PROJECT_DIR$/vehicles-api/src/main/java/com/udacity/vehicles/service/CarService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vehicles-api/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/vehicles-api/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vehicles-api/src/test/java/com/udacity/vehicles/api/CarControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/vehicles-api/src/test/java/com/udacity/vehicles/api/CarControllerTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,9 +63,9 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../udacity-java-master/Lesson2-restapis" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../udacity-java-master/Lesson8-testing" />
   </component>
-  <component name="RunManager" selected="Spring Boot.PricingServiceApplication">
+  <component name="RunManager" selected="JUnit.CarControllerTest.findCar">
     <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -78,17 +79,50 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PricingUnitTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="pricing-service" />
+    <configuration name="CarControllerTest.deleteCar" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="vehicles-api" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.udacity.project.pricingservice.web.*" />
+          <option name="PATTERN" value="com.udacity.vehicles.api.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.udacity.project.pricingservice.web" />
-      <option name="MAIN_CLASS_NAME" value="com.udacity.project.pricingservice.web.PricingUnitTest" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="PACKAGE_NAME" value="com.udacity.vehicles.api" />
+      <option name="MAIN_CLASS_NAME" value="com.udacity.vehicles.api.CarControllerTest" />
+      <option name="METHOD_NAME" value="deleteCar" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CarControllerTest.findCar" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="vehicles-api" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.udacity.vehicles.api.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.udacity.vehicles.api" />
+      <option name="MAIN_CLASS_NAME" value="com.udacity.vehicles.api.CarControllerTest" />
+      <option name="METHOD_NAME" value="findCar" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CarControllerTest.listCars" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="vehicles-api" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.udacity.vehicles.api.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.udacity.vehicles.api" />
+      <option name="MAIN_CLASS_NAME" value="com.udacity.vehicles.api.CarControllerTest" />
+      <option name="METHOD_NAME" value="listCars" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -135,9 +169,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.CarControllerTest.findCar" />
+        <item itemvalue="JUnit.CarControllerTest.deleteCar" />
+        <item itemvalue="JUnit.CarControllerTest.listCars" />
         <item itemvalue="Spring Boot.PricingServiceApplication" />
         <item itemvalue="Spring Boot.Application" />
-        <item itemvalue="JUnit.PricingUnitTest" />
       </list>
     </recent_temporary>
   </component>
@@ -150,7 +186,7 @@
       <option name="presentableId" value="Default" />
       <updated>1602877850119</updated>
       <workItem from="1602877852321" duration="1855000" />
-      <workItem from="1602929313440" duration="7771000" />
+      <workItem from="1602929313440" duration="12981000" />
     </task>
     <servers />
   </component>
@@ -174,46 +210,50 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="551" y="281" width="433" height="267" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1536.824@0.0.1536.824" timestamp="1602879870504" />
-    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1602934661480">
+    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1602937382475">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1602934661480" />
-    <state width="1493" height="210" key="GridCell.Tab.0.bottom" timestamp="1602936902110">
+    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1602937382475" />
+    <state width="1493" height="210" key="GridCell.Tab.0.bottom" timestamp="1602942278326">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1602936902110" />
-    <state width="1493" height="210" key="GridCell.Tab.0.center" timestamp="1602936902110">
+    <state width="1493" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1602942278326" />
+    <state width="1493" height="210" key="GridCell.Tab.0.center" timestamp="1602942278326">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1602936902110" />
-    <state width="1493" height="210" key="GridCell.Tab.0.left" timestamp="1602936902110">
+    <state width="1493" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1602942278326" />
+    <state width="1493" height="210" key="GridCell.Tab.0.left" timestamp="1602942278326">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1602936902110" />
-    <state width="1493" height="210" key="GridCell.Tab.0.right" timestamp="1602936902110">
+    <state width="1493" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1602942278326" />
+    <state width="1493" height="210" key="GridCell.Tab.0.right" timestamp="1602942278326">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1602936902110" />
-    <state width="1493" height="210" key="GridCell.Tab.1.bottom" timestamp="1602936902111">
+    <state width="1493" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1602942278326" />
+    <state width="1493" height="210" key="GridCell.Tab.1.bottom" timestamp="1602939670720">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1602936902111" />
-    <state width="1493" height="210" key="GridCell.Tab.1.center" timestamp="1602936902110">
+    <state width="1493" height="210" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1602939670720" />
+    <state width="1493" height="210" key="GridCell.Tab.1.center" timestamp="1602939670720">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1602936902110" />
-    <state width="1493" height="210" key="GridCell.Tab.1.left" timestamp="1602936902110">
+    <state width="1493" height="210" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1602939670720" />
+    <state width="1493" height="210" key="GridCell.Tab.1.left" timestamp="1602939670720">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1602936902110" />
-    <state width="1493" height="210" key="GridCell.Tab.1.right" timestamp="1602936902111">
+    <state width="1493" height="210" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1602939670720" />
+    <state width="1493" height="210" key="GridCell.Tab.1.right" timestamp="1602939670720">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1602936902111" />
+    <state width="1493" height="210" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1602939670720" />
     <state x="584" y="190" key="chooseDestDirectoryDialog" timestamp="1602879869137">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="584" y="190" key="chooseDestDirectoryDialog/0.0.1536.824@0.0.1536.824" timestamp="1602879869137" />
+    <state x="425" y="187" key="run.anything.popup" timestamp="1602940100726">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="425" y="187" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1602940100726" />
     <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1602934585379">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

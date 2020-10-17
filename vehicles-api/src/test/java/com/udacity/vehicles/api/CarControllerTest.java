@@ -4,6 +4,8 @@ import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.verify;
+import static org.mockito.internal.verification.VerificationModeFactory.times;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -11,6 +13,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
 import com.udacity.vehicles.client.maps.MapsClient;
 import com.udacity.vehicles.client.prices.PriceClient;
 import com.udacity.vehicles.domain.Condition;
@@ -19,8 +23,13 @@ import com.udacity.vehicles.domain.car.Car;
 import com.udacity.vehicles.domain.car.Details;
 import com.udacity.vehicles.domain.manufacturer.Manufacturer;
 import com.udacity.vehicles.service.CarService;
+
+import java.io.DataInput;
 import java.net.URI;
+import java.nio.charset.Charset;
 import java.util.Collections;
+
+import org.json.JSONObject;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -33,6 +42,10 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
+
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.CoreMatchers.equalTo;
 
 /**
  * Implements testing of the CarController class.
@@ -57,6 +70,9 @@ public class CarControllerTest {
 
     @MockBean
     private MapsClient mapsClient;
+
+    private MediaType contentType = new MediaType("application", "hal+json", Charset.forName("UTF-8"));
+    private MediaType contentTypeText = new MediaType("text", "plain", Charset.forName("UTF-8"));
 
     /**
      * Creates pre-requisites for testing, such as an example car.
@@ -97,6 +113,19 @@ public class CarControllerTest {
          *   below (the vehicle will be the first in the list).
          */
 
+        MvcResult mvcResult = mvc.perform(get("/cars"))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(contentType))
+            .andExpect(content().json("{}"))
+            .andReturn();
+
+        Car predefinedCar = this.getCar();
+        predefinedCar.setId(1L);
+        Gson gson = new Gson();
+        Car car = gson.fromJson(new JSONObject(mvcResult.getResponse().getContentAsString()).getJSONObject("_embedded").getJSONArray("carList").get(0).toString(), Car.class);
+        assertThat(car.getId(), equalTo(predefinedCar.getId()));
+        verify(carService, times(1)).list();
+
     }
 
     /**
@@ -109,6 +138,21 @@ public class CarControllerTest {
          * TODO: Add a test to check that the `get` method works by calling
          *   a vehicle by ID. This should utilize the car from `getCar()` below.
          */
+        int id = 1;
+        Car predefinedCar = this.getCar();
+        MvcResult mvcResult = mvc.perform(get("/cars/" + id))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(contentType))
+            .andExpect(content().json("{}"))
+            .andReturn();
+
+        Gson gson = new Gson();
+        Car car = gson.fromJson(new JSONObject(mvcResult.getResponse().getContentAsString()).toString(), Car.class);
+        assertThat(car.getId().intValue(), equalTo(id));
+        assertThat(car.getLocation().getLat(), equalTo(predefinedCar.getLocation().getLat()));
+        assertThat(car.getLocation().getLon(), equalTo(predefinedCar.getLocation().getLon()));
+        assertThat(car.getCondition(), equalTo(predefinedCar.getCondition()));
+        assertThat(car.getDetails().getBody(), equalTo(predefinedCar.getDetails().getBody()));
     }
 
     /**
@@ -122,6 +166,13 @@ public class CarControllerTest {
          *   when the `delete` method is called from the Car Controller. This
          *   should utilize the car from `getCar()` below.
          */
+        int id = 1;
+        MvcResult mvcResult = mvc.perform(delete("/cars/" + id))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(contentTypeText))
+            .andReturn();
+
+        assertThat("Delete Car went successfully", equalTo(mvcResult.getResponse().getContentAsString()));
     }
 
     /**
