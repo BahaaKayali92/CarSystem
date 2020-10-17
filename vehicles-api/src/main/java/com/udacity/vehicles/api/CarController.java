@@ -83,8 +83,8 @@ class CarController {
          *   Update the first line as part of the above implementing.
          */
         System.out.println(car);
-        this.carService.save(car);
-        Resource<Car> resource = assembler.toResource(car);
+        Car saveCar = this.carService.save(car);
+        Resource<Car> resource = assembler.toResource(saveCar);
         return ResponseEntity.created(new URI(resource.getId().expand().getHref())).body(resource);
     }
 

@@ -28,6 +28,7 @@ import java.io.DataInput;
 import java.net.URI;
 import java.nio.charset.Charset;
 import java.util.Collections;
+import java.util.Map;
 
 import org.json.JSONObject;
 import org.junit.Before;
@@ -43,9 +44,13 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.CoreMatchers.equalTo;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 
 /**
  * Implements testing of the CarController class.
@@ -126,6 +131,22 @@ public class CarControllerTest {
         assertThat(car.getId(), equalTo(predefinedCar.getId()));
         verify(carService, times(1)).list();
 
+    }
+
+    @Test
+    public void updateCar() throws Exception {
+        int id = 1;
+        Car car = getCar();
+        car.setId(1L);
+        car.setCondition(Condition.NEW);
+        ObjectMapper mapper = new ObjectMapper();
+        String jsonString = mapper.writeValueAsString(car);
+
+        this.mvc.perform(
+                put("/cars/" + id)
+                .contentType(contentType)
+                .content(jsonString))
+                .andExpect(status().isOk());
     }
 
     /**
