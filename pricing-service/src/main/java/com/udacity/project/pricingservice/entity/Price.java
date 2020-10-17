@@ -10,7 +10,6 @@ import java.math.BigDecimal;
 public class Price {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
     private Long vehicleId;
     private String currency;
     private BigDecimal price;
@@ -18,8 +17,7 @@ public class Price {
     public Price() {
     }
 
-    public Price(Long id, String currency, BigDecimal price, Long vehicleId) {
-        this.id = id;
+    public Price(String currency, BigDecimal price, Long vehicleId) {
         this.currency = currency;
         this.price = price;
         this.vehicleId = vehicleId;
@@ -47,13 +45,5 @@ public class Price {
 
     public void setVehicleId(Long vehicleId) {
         this.vehicleId = vehicleId;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 }
